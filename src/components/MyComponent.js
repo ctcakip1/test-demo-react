@@ -5,17 +5,24 @@ import { applyMiddleware } from "redux";
 import UserInfo from "./UserInfo";
 import DisplayInfo from "./DisplayInfo";
 class MyComponent extends React.Component {
+  state = {
+    listUsers: [
+      { id: 1, name: "tuan anh", age: 10 },
+      { id: 2, name: "tuan", age: 20 },
+      { id: 3, name: "anh", age: 30 },
+    ]
+  };
   // JSX
   render() {
-    const myAge = 50;
-    const myArr = ["a", "b", "c"];
+    // DRY: don't repeat yourself
     return (
       <div>
         <UserInfo />
-        <br/><br/>
-        <DisplayInfo name="tuan anh em" age="20" />
-        <hr />
-        <DisplayInfo name="em" age={myAge} myArr = {myArr} />
+        <br />
+        <br />
+        <DisplayInfo
+          listUsers={this.state.listUsers}
+        />
       </div>
     );
   }
