@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./DisplayInfo.scss"
 class DisplayInfo extends React.Component {
   state = {
     isShowListUser: true,
@@ -16,7 +16,7 @@ class DisplayInfo extends React.Component {
     // prop => viet tat cua properties
     // console.table(listUsers);
     return (
-      <div>
+      <div className="display-infor-container">
         <div>
           <span
             onClick={() => {
