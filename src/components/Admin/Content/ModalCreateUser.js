@@ -84,6 +84,7 @@ const ModalCreateUser = () => {
               <Form.Group as={Col}>
                 <Form.Label>Role</Form.Label>
                 <Form.Select
+                  value={username}
                   defaultValue="USER"
                   onChange={(e) => {
                     setRole(e.target.value);
