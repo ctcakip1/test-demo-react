@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
@@ -7,9 +7,10 @@ import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
 import { applyMiddleware } from "redux";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../../services/apiService";
-const ModalCreateUser = (props) => {
-  const { show, setShow } = props;
+import { postCreateNewUser, putUpdateUser } from "../../../services/apiService";
+import _ from "lodash";
+const ModalUpdateUser = (props) => {
+  const { show, setShow, dataUpdate, resetUpdateData } = props;
   const handleClose = () => {
     setShow(false);
     setEmail("");
@@ -18,7 +19,20 @@ const ModalCreateUser = (props) => {
     setRole("USER");
     setImage("");
     setPreviewImage("");
+    resetUpdateData();
   };
+  useEffect(() => {
+    if (!_.isEmpty(dataUpdate)) {
+      // update state
+      setEmail(dataUpdate.email);
+      setUsername(dataUpdate.username);
+      setRole(dataUpdate.role);
+      setImage("");
+      if (dataUpdate.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+      }
+    }
+  }, [dataUpdate]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -49,13 +63,9 @@ const ModalCreateUser = (props) => {
       //toast.info();
       return;
     }
-    if (!password) {
-      toast.error("Invalid Password");
-      return;
-    }
     // submit data
 
-    let data = await postCreateNewUser(email, password, username, role, image);
+    let data = await putUpdateUser(dataUpdate.id, username, role, image);
     console.log("component res", data);
     if (data && data.EC === 0) {
       toast.success(data.EM);
@@ -66,6 +76,7 @@ const ModalCreateUser = (props) => {
       toast.error(data.EM);
     }
   };
+
   return (
     <>
       <Modal
@@ -76,7 +87,7 @@ const ModalCreateUser = (props) => {
         className="modal-add-user"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>Update a user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -87,6 +98,7 @@ const ModalCreateUser = (props) => {
                   type="email"
                   placeholder="Enter email"
                   value={email}
+                  disabled={true}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -99,6 +111,7 @@ const ModalCreateUser = (props) => {
                   type="password"
                   placeholder="Password"
                   value={password}
+                  disabled={true}
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
@@ -174,4 +187,4 @@ const ModalCreateUser = (props) => {
     </>
   );
 };
-export default ModalCreateUser;
+export default ModalUpdateUser;
