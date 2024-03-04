@@ -5,12 +5,20 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
-const ModalCreateUser = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+import { applyMiddleware } from "redux";
+import { toast } from "react-toastify";
+import { postCreateNewUser } from "../../../services/apiService";
+const ModalCreateUser = (props) => {
+  const { show, setShow } = props;
+  const handleClose = () => {
+    setShow(false);
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setRole("USER");
+    setImage("");
+    setPreviewImage("");
+  };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -25,13 +33,40 @@ const ModalCreateUser = () => {
       setPreviewImage("");
     }
   };
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  const handleSubmitCreateUser = async () => {
+    // validate
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      toast.error("Invalid Email");
+      //toast.success();
+      //toast.info();
+      return;
+    }
+    if (!password) {
+      toast.error("Invalid Password");
+      return;
+    }
+    // submit data
 
+    let data = await postCreateNewUser(email, password, username, role, image);
+    console.log("component res", data);
+    if (data && data.EC === 0) {
+      toast.success(data.EM);
+      handleClose();
+    }
+    if (data && data.EC !== 0) {
+      toast.error(data.EM);
+    }
+  };
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -84,8 +119,7 @@ const ModalCreateUser = () => {
               <Form.Group as={Col}>
                 <Form.Label>Role</Form.Label>
                 <Form.Select
-                  value={username}
-                  defaultValue="USER"
+                  value={role}
                   onChange={(e) => {
                     setRole(e.target.value);
                   }}
@@ -126,7 +160,12 @@ const ModalCreateUser = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleSubmitCreateUser();
+            }}
+          >
             Save Changes
           </Button>
         </Modal.Footer>
