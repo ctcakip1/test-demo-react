@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import { FcPlus } from "react-icons/fc";
 import { applyMiddleware } from "redux";
 import { toast } from "react-toastify";
-import { postCreateNewUser, putUpdateUser } from "../../../services/apiService";
+import { putUpdateUser } from "../../../services/apiService";
 import _ from "lodash";
 const ModalUpdateUser = (props) => {
   const { show, setShow, dataUpdate, resetUpdateData } = props;
@@ -70,7 +70,9 @@ const ModalUpdateUser = (props) => {
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose();
-      await props.fetchListUsers();
+      // await props.fetchListUsers();
+      // props.setCurrentPage(1)
+      await props.fetchListUsersWithPaginate(props.currentPage);
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);
