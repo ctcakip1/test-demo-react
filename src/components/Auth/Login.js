@@ -3,10 +3,15 @@ import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../services/apiService";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
+import { FaSpinner } from "react-icons/fa";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isLoadding, setIsLoading] = useState(false);
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -23,26 +28,36 @@ const Login = (props) => {
       //toast.info();
       return;
     }
+
     if (!password) {
       toast.error("Invalid Password");
       return;
     }
-
+    setIsLoading(true);
     //submit api
     let data = await postLogin(email, password);
     if (data && data.EC === 0) {
+      dispatch(doLogin(data));
       toast.success(data.EM);
+      setIsLoading(false);
       navigate("/");
     }
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
+      setIsLoading(false);
     }
   };
   return (
     <div className="login-container">
       <div className="header">
         <span>Don't have an account yet?</span>
-        <button onClick={()=>{navigate('/signup')}}>Sign up</button>
+        <button
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
+          Sign up
+        </button>
       </div>
       <div className="title col-4 mx-auto">Tuan anh</div>
       <div className="welcome col-4 mx-auto">Hello, who's this?</div>
@@ -76,8 +91,10 @@ const Login = (props) => {
             onClick={() => {
               handleLogin();
             }}
+            disabled={isLoadding}
           >
-            Login to Tuan anh
+            {isLoadding === true && <FaSpinner className="loader-icon" />}
+            <span>Login to Tuan anh</span>
           </button>
         </div>
         <div className="text-center">
