@@ -1,31 +1,31 @@
 import { useState } from "react";
-import "./Login.scss";
+import "./Signup.scss";
 import { useNavigate } from "react-router-dom";
-import { postLogin } from "../../services/apiService";
+import { postSignup } from "../../services/apiService";
 import { toast } from "react-toastify";
-const Login = (props) => {
+const Signup = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
-  
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     // validate
 
     //submit api
-    let data = await postLogin(email, password);
+    let data = await postSignup(email, password, username);
     if (data && data.EC === 0) {
       toast.success(data.EM);
-      navigate("/");
+      navigate("/login");
     }
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
     }
   };
   return (
-    <div className="login-container">
+    <div className="signup-container">
       <div className="header">
         <span>Don't have an account yet?</span>
-        <button onClick={()=>{navigate('/signup')}}>Sign up</button>
+        <button>Sign up</button>
       </div>
       <div className="title col-4 mx-auto">Tuan anh</div>
       <div className="welcome col-4 mx-auto">Hello, who's this?</div>
@@ -39,6 +39,18 @@ const Login = (props) => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>UserName</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
           />
         </div>
         <div className="form-group ">
@@ -50,17 +62,19 @@ const Login = (props) => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            required
           />
+          <label>conmat</label>
         </div>
         <span className="forgot-password">Forgot Password</span>
         <div>
           <button
             className="btn-submit"
             onClick={() => {
-              handleLogin();
+              handleSignup();
             }}
           >
-            Login to Tuan anh
+            Signup
           </button>
         </div>
         <div className="text-center">
@@ -77,4 +91,4 @@ const Login = (props) => {
     </div>
   );
 };
-export default Login;
+export default Signup;

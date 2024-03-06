@@ -8,6 +8,7 @@ import Login from "./components/Auth/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Signup from "./components/Auth/Signup";
 const Layout = (props) => {
   return (
     <>
@@ -20,7 +21,8 @@ const Layout = (props) => {
           <Route index element={<Dashboard />} />
           <Route path="manage-users" element={<ManageUser />} />
         </Route>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<Signup />} />
       </Routes>
       <ToastContainer
         position="top-center"
