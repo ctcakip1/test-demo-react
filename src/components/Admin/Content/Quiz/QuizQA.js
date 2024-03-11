@@ -4,7 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Select from "react-select";
-import "./Questions.scss";
+import "./QuizQA.scss";
 import { RiImageAddFill } from "react-icons/ri";
 import { v4 as uuidv4 } from "uuid";
 import _, { create } from "lodash";
@@ -17,7 +17,7 @@ import {
 } from "../../../../services/apiService";
 import { toast } from "react-toastify";
 
-const Questions = (props) => {
+const QuizQA = (props) => {
   const [isPreviewImage, setIsPreviewImage] = useState(false);
   const [dataImagePreview, setDataImagePreview] = useState({
     title: "",
@@ -221,8 +221,6 @@ const Questions = (props) => {
   };
   return (
     <div className="questions-container">
-      <div className="title">Manage Question</div>
-      <hr />
       <div className="add-new-question">
         <div className="col-6 form group">
           <label className="mb-2">Select Quiz:</label>
@@ -391,4 +389,4 @@ const Questions = (props) => {
     </div>
   );
 };
-export default Questions;
+export default QuizQA;
