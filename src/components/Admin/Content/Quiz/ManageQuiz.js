@@ -118,7 +118,9 @@ const ManageQuiz = (props) => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
+
     </div>
+    
   );
 };
 export default ManageQuiz;
