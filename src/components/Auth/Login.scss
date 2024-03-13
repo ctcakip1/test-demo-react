@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: 10px;
     button {
       padding: 3px 15px;
       margin-left: 15px;
@@ -55,7 +56,7 @@
       border-radius: 5px;
       color: white;
       background: black;
-      &:disabled{
+      &:disabled {
         background: #dddddd;
         color: #afafaf;
         cursor: no-drop;

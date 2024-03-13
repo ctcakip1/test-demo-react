@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { postSignup } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Language from "../Header/Language";
 const Signup = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,6 +52,7 @@ const Signup = (props) => {
         >
           Log in{" "}
         </button>
+        <Language/>
       </div>
       <div className="title col-4 mx-auto">Tuan anh</div>
       <div className="welcome col-4 mx-auto">Start your journey?</div>
