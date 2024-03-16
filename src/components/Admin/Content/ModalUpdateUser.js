@@ -9,7 +9,11 @@ import { applyMiddleware } from "redux";
 import { toast } from "react-toastify";
 import { putUpdateUser } from "../../../services/apiService";
 import _ from "lodash";
+import { useTranslation, Trans } from "react-i18next";
+
 const ModalUpdateUser = (props) => {
+  const { t } = useTranslation();
+
   const { show, setShow, dataUpdate, resetUpdateData } = props;
   const handleClose = () => {
     setShow(false);
@@ -89,13 +93,13 @@ const ModalUpdateUser = (props) => {
         className="modal-add-user"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Update a user</Modal.Title>
+          <Modal.Title>{t("u-user.update")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Email</Form.Label>
+                <Form.Label>{t("u-user.email")}</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
@@ -108,7 +112,7 @@ const ModalUpdateUser = (props) => {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Password</Form.Label>
+                <Form.Label>{t("u-user.password")}</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Password"
@@ -123,7 +127,7 @@ const ModalUpdateUser = (props) => {
 
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>User Name</Form.Label>
+                <Form.Label>{t("u-user.username")}</Form.Label>
                 <Form.Control
                   value={username}
                   onChange={(e) => {
@@ -133,15 +137,15 @@ const ModalUpdateUser = (props) => {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Role</Form.Label>
+                <Form.Label>{t("u-user.role")}</Form.Label>
                 <Form.Select
                   value={role}
                   onChange={(e) => {
                     setRole(e.target.value);
                   }}
                 >
-                  <option value={"USER"}>USER</option>
-                  <option value={"ADMIN"}>ADMIN</option>
+                  <option value={t("u-user.user")}>{t("u-user.user")}</option>
+                  <option value={t("u-user.admin")}>{t("u-user.admin")}</option>
                 </Form.Select>
               </Form.Group>
             </Row>
@@ -149,7 +153,7 @@ const ModalUpdateUser = (props) => {
               <Form.Group as={Col}>
                 <Form.Label className="lable-upload" htmlFor="lableUpload">
                   <FcPlus />
-                  Upload file Image
+                  {t("u-user.upload")}
                 </Form.Label>
                 <input
                   type="file"
@@ -166,7 +170,7 @@ const ModalUpdateUser = (props) => {
                 {previewImage ? (
                   <img src={previewImage} />
                 ) : (
-                  <span>Preview Image</span>
+                  <span>{t("u-user.pre")}</span>
                 )}
               </Form.Group>
             </Row>
@@ -174,7 +178,7 @@ const ModalUpdateUser = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("u-user.close")}
           </Button>
           <Button
             variant="primary"
@@ -182,7 +186,7 @@ const ModalUpdateUser = (props) => {
               handleSubmitCreateUser();
             }}
           >
-            Save Changes
+            {t("u-user.save")}
           </Button>
         </Modal.Footer>
       </Modal>

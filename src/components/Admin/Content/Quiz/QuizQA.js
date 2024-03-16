@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from "uuid";
 import _, { create } from "lodash";
 import "react-awesome-lightbox/build/style.css";
 import Lightbox from "react-awesome-lightbox";
+import { useTranslation, Trans } from "react-i18next";
+
 import {
   getAllQuizForAdmin,
   postCreateNewQuestionForQuiz,
@@ -20,6 +22,8 @@ import {
 import { toast } from "react-toastify";
 
 const QuizQA = (props) => {
+  const { t } = useTranslation();
+
   const [isPreviewImage, setIsPreviewImage] = useState(false);
   const [dataImagePreview, setDataImagePreview] = useState({
     title: "",
@@ -273,14 +277,16 @@ const QuizQA = (props) => {
     <div className="questions-container">
       <div className="add-new-question">
         <div className="col-6 form group">
-          <label className="mb-2">Select Quiz:</label>
+          <label className="mb-2">
+            {t("m-quiz-parent.u-q/a.q-q/a.s-quiz")}
+          </label>
           <Select
             defaultValue={selectedQuiz}
             onChange={setSelectedQuiz}
             options={listQuiz}
           />
         </div>
-        <div className="mt-3 mb-2 ">Add Questions:</div>
+        <div className="mt-3 mb-2 ">{t("m-quiz-parent.u-q/a.q-q/a.add")}</div>
         <div>
           {questions &&
             questions.length > 0 &&
@@ -302,7 +308,10 @@ const QuizQA = (props) => {
                           );
                         }}
                       />
-                      <label>Question {index + 1} 's Description</label>
+                      <label>
+                        {t("m-quiz-parent.u-q/a.q-q/a.q")} {index + 1} 's{" "}
+                        {t("m-quiz-parent.u-q/a.q-q/a.des")}
+                      </label>
                     </div>
                     <div className="group-upload">
                       <label htmlFor={`${question.id}`}>
@@ -327,7 +336,7 @@ const QuizQA = (props) => {
                             {question.imageName}
                           </span>
                         ) : (
-                          "0 file is uploaded"
+                          t("m-quiz-parent.u-q/a.q-q/a.up")
                         )}
                       </span>
                     </div>
@@ -383,7 +392,7 @@ const QuizQA = (props) => {
                                 );
                               }}
                             />
-                            <label>Answer {index + 1}</label>
+                            <label>{t("m-quiz-parent.u-q/a.q-q/a.a")} {index + 1}</label>
                           </div>
                           <div className="btn-group">
                             <span
@@ -421,7 +430,7 @@ const QuizQA = (props) => {
                   handleSubmitQuestionForQuiz();
                 }}
               >
-                Save Question
+                {t("m-quiz-parent.u-q/a.q-q/a.save")}
               </button>
             </div>
           )}

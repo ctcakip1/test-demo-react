@@ -8,7 +8,11 @@ import { FcPlus } from "react-icons/fc";
 import { applyMiddleware } from "redux";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../../services/apiService";
+import { useTranslation, Trans } from "react-i18next";
+
 const ModalCreateUser = (props) => {
+  const { t } = useTranslation();
+
   const { show, setShow } = props;
   const handleClose = () => {
     setShow(false);
@@ -78,13 +82,13 @@ const ModalCreateUser = (props) => {
         className="modal-add-user"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>{t("c-user.add")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Email</Form.Label>
+                <Form.Label>{t("c-user.email")}</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
@@ -96,7 +100,7 @@ const ModalCreateUser = (props) => {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Password</Form.Label>
+                <Form.Label>{t("c-user.password")}</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Password"
@@ -110,7 +114,7 @@ const ModalCreateUser = (props) => {
 
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>User Name</Form.Label>
+                <Form.Label>{t("c-user.username")}</Form.Label>
                 <Form.Control
                   value={username}
                   onChange={(e) => {
@@ -120,15 +124,15 @@ const ModalCreateUser = (props) => {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Role</Form.Label>
+                <Form.Label>{t("c-user.role")}</Form.Label>
                 <Form.Select
                   value={role}
                   onChange={(e) => {
                     setRole(e.target.value);
                   }}
                 >
-                  <option value={"USER"}>USER</option>
-                  <option value={"ADMIN"}>ADMIN</option>
+                  <option value={t("c-user.user")}>{t("c-user.user")}</option>
+                  <option value={t("c-user.admin")}>{t("c-user.admin")}</option>
                 </Form.Select>
               </Form.Group>
             </Row>
@@ -136,7 +140,7 @@ const ModalCreateUser = (props) => {
               <Form.Group as={Col}>
                 <Form.Label className="lable-upload" htmlFor="lableUpload">
                   <FcPlus />
-                  Upload file Image
+                  {t("c-user.upload")}
                 </Form.Label>
                 <input
                   type="file"
@@ -153,7 +157,7 @@ const ModalCreateUser = (props) => {
                 {previewImage ? (
                   <img src={previewImage} />
                 ) : (
-                  <span>Preview Image</span>
+                  <span>{t("c-user.pre")}</span>
                 )}
               </Form.Group>
             </Row>
@@ -161,7 +165,7 @@ const ModalCreateUser = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+          {t("c-user.close")}
           </Button>
           <Button
             variant="primary"
@@ -169,7 +173,7 @@ const ModalCreateUser = (props) => {
               handleSubmitCreateUser();
             }}
           >
-            Save Changes
+            {t("c-user.save")}
           </Button>
         </Modal.Footer>
       </Modal>

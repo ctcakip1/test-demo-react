@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import {
   getAllQuizForAdmin,
   getAllUser,
-  postAssignQuiz
+  postAssignQuiz,
 } from "../../../../services/apiService";
 import { toast } from "react-toastify";
+import { useTranslation, Trans } from "react-i18next";
 
 const AssignQuiz = (props) => {
+  const { t } = useTranslation();
+
   const [listQuiz, setListQuiz] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState({});
   const [listUser, setListUser] = useState([]);
@@ -40,22 +43,20 @@ const AssignQuiz = (props) => {
       setListUser(users);
     }
   };
-  const handleAssign = async()=>{
-    let res = await postAssignQuiz(selectedQuiz.value, selectedUser.value)
-    if(res && res.EC === 0)
-    {
-      toast.success(res.EM)
-      setSelectedQuiz({})
-      setListUser({})
+  const handleAssign = async () => {
+    let res = await postAssignQuiz(selectedQuiz.value, selectedUser.value);
+    if (res && res.EC === 0) {
+      toast.success(res.EM);
+      setSelectedQuiz({});
+      setListUser({});
+    } else {
+      toast.error(res.EM);
     }
-    else{
-      toast.error(res.EM)
-    }
-  }
+  };
   return (
     <div className="assign-quiz-container row">
       <div className="col-6 form group">
-        <label className="mb-2">Select Quiz:</label>
+        <label className="mb-2">{t("m-quiz-parent.a-quiz.s-quiz")}</label>
         <Select
           defaultValue={selectedQuiz}
           onChange={setSelectedQuiz}
@@ -63,7 +64,7 @@ const AssignQuiz = (props) => {
         />
       </div>
       <div className="col-6 form group">
-        <label className="mb-2">Select Quiz:</label>
+        <label className="mb-2">{t("m-quiz-parent.a-quiz.s-user")}</label>
         <Select
           defaultValue={selectedUser}
           onChange={setSelectedUser}
@@ -71,7 +72,14 @@ const AssignQuiz = (props) => {
         />
       </div>
       <div>
-        <button className="btn btn-warning mt-3" onClick={()=>{handleAssign()}}>Assign</button>
+        <button
+          className="btn btn-warning mt-3"
+          onClick={() => {
+            handleAssign();
+          }}
+        >
+          {t("m-quiz-parent.a-quiz.a")}
+        </button>
       </div>
     </div>
   );

@@ -5,7 +5,11 @@ import { postSignup } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Language from "../Header/Language";
+import { useTranslation, Trans } from "react-i18next";
+
 const Signup = (props) => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -44,21 +48,21 @@ const Signup = (props) => {
   return (
     <div className="signup-container">
       <div className="header">
-        <span>Already have an account ?</span>
+        <span>{t("signup.header.account")}</span>
         <button
           onClick={() => {
             navigate("/login");
           }}
         >
-          Log in{" "}
+          {t("signup.header.login")}{" "}
         </button>
-        <Language/>
+        <Language />
       </div>
       <div className="title col-4 mx-auto">Tuan anh</div>
-      <div className="welcome col-4 mx-auto">Start your journey?</div>
+      <div className="welcome col-4 mx-auto">{t("signup.content.hello")}</div>
       <div className="content-form col-4 mx-auto">
         <div className="form-group ">
-          <label>Email(*)</label>
+          <label>{t("signup.content.email")}(*)</label>
           <input
             type="email"
             className="form-control"
@@ -69,7 +73,7 @@ const Signup = (props) => {
           />
         </div>
         <div className="form-group pass-group ">
-          <label>Password(*)</label>
+          <label>{t("signup.content.password")}(*)</label>
           <input
             type={showPassword ? "text" : "password"}
             className="form-control"
@@ -78,12 +82,15 @@ const Signup = (props) => {
               setPassword(e.target.value);
             }}
           />
-          <span className="icon-eyes" onClick={() => setShowPassword(!showPassword)}>
+          <span
+            className="icon-eyes"
+            onClick={() => setShowPassword(!showPassword)}
+          >
             {!showPassword ? <FaEye /> : <FaEyeSlash />}
           </span>
         </div>
         <div className="form-group">
-          <label>UserName</label>
+          <label>{t("signup.content.username")}</label>
           <input
             type="text"
             className="form-control"
@@ -101,7 +108,7 @@ const Signup = (props) => {
               handleSignup();
             }}
           >
-            Signup
+            {t("signup.content.btnsignup")}
           </button>
         </div>
         <div className="text-center">
@@ -111,7 +118,7 @@ const Signup = (props) => {
             }}
             className="back"
           >
-            &#60;&#60;Go to HomePage
+            &#60;&#60;{t("signup.content.back")}
           </span>
         </div>
       </div>

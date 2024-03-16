@@ -3,7 +3,11 @@ import { getAllQuizForAdmin } from "../../../../services/apiService";
 import { useNavigate } from "react-router-dom";
 import ModalUpdateQuiz from "./ModalUpdateQuiz";
 import ModalDeleteQuiz from "./ModalDeleteQuiz";
+import { useTranslation, Trans } from "react-i18next";
+
 const TableQuiz = (props) => {
+  const { t } = useTranslation();
+
   const [listQuiz, setListQuiz] = useState([]);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
@@ -30,15 +34,15 @@ const TableQuiz = (props) => {
   };
   return (
     <>
-      <div>List Quizzes:</div>
+      <div>{t("t-quiz.title-1.l-quiz")}</div>
       <table className="table table-hover table-bordered my-2">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Type</th>
-            <th scope="col">Action</th>
+            <th scope="col">{t("t-quiz.title-1.id")}</th>
+            <th scope="col">{t("t-quiz.title-1.name")}</th>
+            <th scope="col">{t("t-quiz.title-1.des")}</th>
+            <th scope="col">{t("t-quiz.title-1.type")}</th>
+            <th scope="col">{t("t-quiz.title-1.action")}</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +61,7 @@ const TableQuiz = (props) => {
                         handleUpdateQuiz(item);
                       }}
                     >
-                      Edit
+                      {t("t-quiz.title-1.edit")}
                     </button>
                     <button
                       className="btn btn-danger"
@@ -65,7 +69,7 @@ const TableQuiz = (props) => {
                         handleDeleteQuiz(item);
                       }}
                     >
-                      Delete
+                      {t("t-quiz.title-1.delete")}
                     </button>
                   </td>
                 </tr>

@@ -1,13 +1,13 @@
 .detail-quiz-container {
   display: flex;
   gap: 20px;
-  padding: 50px;
+  padding: 20px;
 
   .left-content {
     border: 2px solid #ccc;
     width: 70%;
     border-radius: 5px;
-    padding: 80px;
+    padding: 50px;
     .title {
       font-size: 30px;
       font-weight: 600;
@@ -80,5 +80,11 @@
         }
       }
     }
+  }
+}
+.quiz-detail-new-header {
+  padding: 25px 0 0 70px;
+  a {
+    text-decoration: none !important;
   }
 }

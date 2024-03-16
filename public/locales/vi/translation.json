@@ -6,5 +6,194 @@
       "login": "Bắt đầu đê",
       "users": "Làm luôn đê"
     }
+  },
+  "header": {
+    "item1": {
+      "home": "Trang chủ",
+      "users": "Người dùng",
+      "Admin": "Quản trị"
+    },
+    "item2": {
+      "title": "Cài đặt",
+      "profile": "Thông tin cá nhân",
+      "logout": "Đăng xuất"
+    }
+  },
+  "login": {
+    "header": {
+      "account": "Chưa có acc thì ấn vào đây",
+      "signup": "Đăng ký"
+    },
+    "content": {
+      "hello": "Xin chào, ai đấy?",
+      "email": "Email",
+      "password": "Mật khẩu",
+      "forget": "Quên mật khẩu à",
+      "btnlogin": "Đăng nhập tới Tuan anh",
+      "back": "Trở về trang chủ"
+    }
+  },
+  "signup": {
+    "header": {
+      "account": "Có acc rồi thì ấn vào đây",
+      "login": "Đăng nhập"
+    },
+    "content": {
+      "hello": "Bắt đầu nhá cu",
+      "email": "Email",
+      "password": "Password",
+      "username": "Tên người dùng",
+      "btnsignup": "Đăng ký",
+      "back": "Trở về trang chủ"
+    }
+  },
+  "dashboard": {
+    "item1": {
+      "d": "Bảng chung",
+      "title": "Tiêu đề"
+    },
+    "item2": {
+      "t-user": "Tổng người dùng",
+      "t-quizzes": "Tổng bài quiz",
+      "t-questions": "Tổng câu hỏi",
+      "t-answers": "Tổng đáp án"
+    },
+    "item3": {
+      "name1": "Bài quiz",
+      "name2": "Câu hỏi",
+      "name3": "Đáp án"
+    }
+  },
+  "sidebar": {
+    "d": "Bảng chung",
+    "title": "Tính năng",
+    "u": "Quản lý người dùng",
+    "q": "Quản lý bài quiz",
+    "q-1": "Quản lý câu hỏi"
+  },
+
+  "manage-u": {
+    "m": "Quản lý người dùng",
+    "add": "Thêm người dùng"
+  },
+  "table-u": {
+    "item1": {
+      "id": "ID",
+      "username": "Tên người dùng",
+      "email": "Email",
+      "role": "Vai trò",
+      "Action": "Chức năng"
+    },
+    "item2": {
+      "view": "Xem",
+      "update": "Cập nhật",
+      "delete": "Xóa",
+      "notfound": "Không tìm thấy dữ liệu"
+    }
+  },
+  "c-user": {
+    "add": "Thêm người dùng mới",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "username": "Tên người dùng",
+    "role": "Vai trò",
+    "user": "Người dùng",
+    "admin": "Quản trị",
+    "upload": "Up ảnh",
+    "pre": "Ảnh view",
+    "close": "Đóng",
+    "save": "Thêm"
+  },
+  "v-user": {
+    "view": "Xem người dùng",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "username": "Tên người dùng",
+    "role": "Vai trò",
+    "user": "Người dùng",
+    "admin": "Quản trị",
+    "upload": "Up ảnh",
+    "pre": "Ảnh view",
+    "close": "Đóng"
+  },
+  "u-user": {
+    "update": "Cập nhật người dùng ",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "username": "Tên người dùng",
+    "role": "Vai trò",
+    "user": "Người dùng",
+    "admin": "Quản trị",
+    "upload": "Up ảnh",
+    "pre": "Ảnh view",
+    "close": "Đóng",
+    "save": "Thay đổi"
+  },
+  "d-user": {
+    "t-1": "Đồng ý xóa user này?",
+    "t-2": "Bạn có chắc xóa user này. email =",
+    "t-3": "Đóng",
+    "t-4": "Đồng ý"
+  },
+  "m-quiz-parent": {
+    "m-quiz": {
+      "header": "Quản lý bài quiz",
+      "add": "Thêm quiz mới",
+      "name": "Tên",
+      "des": "Miêu tả",
+      "upload": "Up ảnh",
+      "save": "Lưu",
+      "update": "Cập nhật Q/A",
+      "assign": "Gán bài quiz cho người dùng"
+    },
+    "u-q/a": {
+      "header": "Update Q/A Quizzes",
+      "q-q/a": {
+        "s-quiz": "Chọn bài quiz:",
+        "add": "Thêm câu hỏi:",
+        "q": "Câu hỏi",
+        "des": "Miêu tả",
+        "up": "0 file nào được up lên",
+        "a": "Đáp án",
+        "save": "Lưu câu hỏi"
+      }
+    },
+    "a-quiz": {
+      "s-quiz": "Chọn bài quiz:",
+      "s-user": "Chọn người dùng:",
+      "a": "Gán"
+    }
+  },
+  "t-quiz": {
+    "title-1": {
+      "l-quiz": "Danh sách bài quiz:",
+      "id": "ID",
+      "name": "Tên",
+      "des": "Miêu tả",
+      "type": "Mức độ",
+      "action": "Chức năng",
+      "edit": "Sửa",
+      "delete": "Xóa"
+    }
+  },
+  "m-ques": {
+    "header": "Quản lý câu hỏi",
+    "s-quiz": "Chọn bài quiz:",
+    "add": "Thêm câu hỏi:",
+    "q": "Câu hỏi",
+    "des": "Miêu tả",
+    "up": "0 file nào được up lên",
+    "a": "Đáp án",
+    "save": "Thêm câu hỏi"
+  },
+  "admin":{
+    "title":"Cài đặt",
+    "profile":"Thông tin cá nhân",
+    "logout":"Đăng xuất"
+  },
+  "l-quiz":{
+    "q":"Bài quiz",
+    "s":"Chiến luôn",
+    "no":"Bạn không có bài quiz nào"
   }
 }

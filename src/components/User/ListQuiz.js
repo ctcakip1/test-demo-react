@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { getQuizByUser } from "../../services/apiService";
 import "./ListQuiz.scss";
 import { useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 const ListQuiz = (props) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const [arrQuiz, setArrQuiz] = useState([]);
   useEffect(() => {
@@ -16,6 +19,7 @@ const ListQuiz = (props) => {
   };
   return (
     <div className="list-quiz-container container">
+      
       {arrQuiz &&
         arrQuiz.length > 0 &&
         arrQuiz.map((quiz, index) => {
@@ -31,7 +35,9 @@ const ListQuiz = (props) => {
                 alt="..."
               />
               <div className="card-body">
-                <h5 className="card-title">Quiz {index + 1}</h5>
+                <h5 className="card-title">
+                  {t("l-quiz.q")} {index + 1}
+                </h5>
                 <p className="card-text">{quiz.description}</p>
                 <button
                   className="btn btn-primary"
@@ -41,13 +47,13 @@ const ListQuiz = (props) => {
                     });
                   }}
                 >
-                  Start now
+                  {t("l-quiz.s")}
                 </button>
               </div>
             </div>
           );
         })}
-      {arrQuiz && arrQuiz.length == 0 && <div>You don't have any quiz now</div>}
+      {arrQuiz && arrQuiz.length == 0 && <div>{t("l-quiz.no")}</div>}
     </div>
   );
 };

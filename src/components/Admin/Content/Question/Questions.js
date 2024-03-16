@@ -16,8 +16,11 @@ import {
   postCreateNewAnswerForQuestion,
 } from "../../../../services/apiService";
 import { toast } from "react-toastify";
+import { useTranslation, Trans } from "react-i18next";
 
 const Questions = (props) => {
+  const { t } = useTranslation();
+
   const [isPreviewImage, setIsPreviewImage] = useState(false);
   const [dataImagePreview, setDataImagePreview] = useState({
     title: "",
@@ -221,18 +224,18 @@ const Questions = (props) => {
   };
   return (
     <div className="questions-container">
-      <div className="title">Manage Question</div>
+      <div className="title">{t("m-ques.header")}</div>
       <hr />
       <div className="add-new-question">
         <div className="col-6 form group">
-          <label className="mb-2">Select Quiz:</label>
+          <label className="mb-2">{t("m-ques.s-quiz")}</label>
           <Select
             defaultValue={selectedQuiz}
             onChange={setSelectedQuiz}
             options={listQuiz}
           />
         </div>
-        <div className="mt-3 mb-2 ">Add Questions:</div>
+        <div className="mt-3 mb-2 ">{t("m-ques.add")}</div>
         <div>
           {questions &&
             questions.length > 0 &&
@@ -254,7 +257,9 @@ const Questions = (props) => {
                           );
                         }}
                       />
-                      <label>Question {index + 1} 's Description</label>
+                      <label>
+                        {t("m-ques.q")} {index + 1} 's {t("m-ques.des")}
+                      </label>
                     </div>
                     <div className="group-upload">
                       <label htmlFor={`${question.id}`}>
@@ -279,7 +284,7 @@ const Questions = (props) => {
                             {question.imageName}
                           </span>
                         ) : (
-                          "0 file is uploaded"
+                          t("m-ques.up")
                         )}
                       </span>
                     </div>
@@ -335,7 +340,9 @@ const Questions = (props) => {
                                 );
                               }}
                             />
-                            <label>Answer {index + 1}</label>
+                            <label>
+                              {t("m-ques.a")} {index + 1}
+                            </label>
                           </div>
                           <div className="btn-group">
                             <span
@@ -373,7 +380,7 @@ const Questions = (props) => {
                   handleSubmitQuestionForQuiz();
                 }}
               >
-                Save Question
+                {t("m-ques.save")}
               </button>
             </div>
           )}

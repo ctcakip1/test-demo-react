@@ -22,7 +22,11 @@ import sidebarBg from "../../assets/bg2.jpg";
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
+
 const SideBar = (props) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { image, collapsed, toggled, handleToggleSidebar } = props;
   return (
@@ -62,23 +66,23 @@ const SideBar = (props) => {
         <SidebarContent>
           <Menu iconShape="circle">
             <MenuItem icon={<MdDashboard />}>
-              Dashboard
+            {t("sidebar.d")}
               <Link to={"/admins"} />
             </MenuItem>
           </Menu>
           <Menu iconShape="circle">
-            <SubMenu icon={<FaGem />} title={"Features"}>
+            <SubMenu icon={<FaGem />} title={t("sidebar.title")}>
               <MenuItem>
-                Quản lý Users
-                <Link to={"/admins/manage-users"} />
+              {t("sidebar.u")}
+                 <Link to={"/admins/manage-users"} />
               </MenuItem>
               <MenuItem>
-                Quản lý bài Quiz
+              {t("sidebar.q")}
                 <Link to={"/admins/manage-quizzes"} />
               </MenuItem>
               <MenuItem>
                 {" "}
-                Quản lý câu hỏi
+                {t("sidebar.q-1")}
                 <Link to={"/admins/manage-questions"} />
               </MenuItem>
             </SubMenu>

@@ -1,4 +1,8 @@
+import { useTranslation, Trans } from "react-i18next";
+
 const TableUser = (props) => {
+  const { t } = useTranslation();
+
   const { listUsers } = props;
 
   return (
@@ -6,11 +10,11 @@ const TableUser = (props) => {
       <table className="table table-hover table-bordered">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">UserName</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th>Action</th>
+            <th scope="col">{t("table-u.item1.id")}</th>
+            <th scope="col">{t("table-u.item1.username")}</th>
+            <th scope="col">{t("table-u.item1.email")}</th>
+            <th scope="col">{t("table-u.item1.role")}</th>
+            <th>{t("table-u.item1.action")}</th>
           </tr>
         </thead>
         <tbody>
@@ -30,7 +34,7 @@ const TableUser = (props) => {
                         props.handleClickBtnView(item);
                       }}
                     >
-                      View
+                      {t("table-u.item2.view")}
                     </button>
                     <button
                       className="btn btn-warning mx-3"
@@ -38,7 +42,7 @@ const TableUser = (props) => {
                         props.handleClickBtnUpdate(item);
                       }}
                     >
-                      Update
+                      {t("table-u.item2.update")}
                     </button>
                     <button
                       className="btn btn-danger"
@@ -46,7 +50,7 @@ const TableUser = (props) => {
                         props.handleClickBtnDelete(item);
                       }}
                     >
-                      Delete
+                      {t("table-u.item2.delete")}
                     </button>
                   </td>
                 </tr>
@@ -54,7 +58,7 @@ const TableUser = (props) => {
             })}
           {listUsers && listUsers.length === 0 && (
             <tr>
-              <td colSpan={"4"}>Not Found Data</td>
+              <td colSpan={"4"}>{t("table-u.item2.notfound")}</td>
             </tr>
           )}
         </tbody>

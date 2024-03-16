@@ -8,7 +8,11 @@ import { logout } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
 import Language from "./Language";
+import { useTranslation, Trans } from "react-i18next";
+
 const Header = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const handleLogin = () => {
     navigate("/login");
@@ -40,13 +44,13 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/" className="nav-link">
-              Home
+              {t("header.item1.home")}
             </NavLink>
             <NavLink to="/users" className="nav-link">
-              Users
+              {t("header.item1.users")}
             </NavLink>
             <NavLink to="/admins" className="nav-link">
-              Admin
+              {t("header.item1.Admin")}
             </NavLink>
           </Nav>
           <Nav>
@@ -70,18 +74,21 @@ const Header = () => {
                 </button>
               </>
             ) : (
-              <NavDropdown title="Setting" id="basic-nav-dropdown">
-                <NavDropdown.Item>Profile</NavDropdown.Item>
+              <NavDropdown
+                title={t("header.item2.title")}
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item>{t("header.item2.profile")}</NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() => {
                     hanldeLogOut();
                   }}
                 >
-                  Log out
+                  {t("header.item2.logout")}
                 </NavDropdown.Item>
               </NavDropdown>
             )}
-            <Language/>
+            <Language />
           </Nav>
         </Navbar.Collapse>
       </Container>

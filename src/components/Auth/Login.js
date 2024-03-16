@@ -7,7 +7,11 @@ import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
 import { FaSpinner } from "react-icons/fa";
 import Language from "../Header/Language";
+import { useTranslation, Trans } from "react-i18next";
+
 const Login = (props) => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -56,21 +60,23 @@ const Login = (props) => {
   return (
     <div className="login-container">
       <div className="header">
-        <span>Don't have an account yet?</span>
+        <span>{t("login.header.account")}</span>
         <button
           onClick={() => {
             navigate("/signup");
           }}
         >
-          Sign up
+          {t("login.header.signup")}
         </button>
         <Language/>
       </div>
+      
       <div className="title col-4 mx-auto">Tuan anh</div>
-      <div className="welcome col-4 mx-auto">Hello, who's this?</div>
+          
+      <div className="welcome col-4 mx-auto">{t("login.content.hello")}</div>
       <div className="content-form col-4 mx-auto">
         <div className="form-group ">
-          <label>Email</label>
+          <label>{t("login.content.email")}</label>
           <input
             type="email"
             className="form-control"
@@ -81,7 +87,7 @@ const Login = (props) => {
           />
         </div>
         <div className="form-group ">
-          <label>Password</label>
+          <label>{t("login.content.password")}</label>
           <input
             type="password"
             className="form-control"
@@ -92,7 +98,7 @@ const Login = (props) => {
             onKeyDown={(e) => handleKeyDown(e)}
           />
         </div>
-        <span className="forgot-password">Forgot Password</span>
+        <span className="forgot-password">{t("login.content.forget")}</span>
         <div>
           <button
             className="btn-submit"
@@ -102,7 +108,7 @@ const Login = (props) => {
             disabled={isLoadding}
           >
             {isLoadding === true && <FaSpinner className="loader-icon" />}
-            <span>Login to Tuan anh</span>
+            <span>{t("login.content.btnlogin")}</span>
           </button>
         </div>
         <div className="text-center">
@@ -112,7 +118,7 @@ const Login = (props) => {
             }}
             className="back"
           >
-            &#60;&#60;Go to HomePage
+            &#60;&#60;{t("login.content.back")}
           </span>
         </div>
       </div>

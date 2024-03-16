@@ -51,7 +51,7 @@ const postCreateNewQuiz = (description, name, difficulty, image) => {
   return axios.post("api/v1/quiz", data);
 };
 const getAllQuizForAdmin = () => {
-  return axios.get("/api/v1/quiz/all");
+  return axios.get("api/v1/quiz/all");
 };
 const putUpdateQuizForAdmin = (id, description, name, difficulty, image) => {
   const data = new FormData();
@@ -98,6 +98,9 @@ const postUpsertQA = (data) => {
 const logout = (email, refresh_token) => {
   return axios.post(`api/v1/logout`, { email, refresh_token });
 };
+const getOverview = () => {
+  return axios.get(`api/v1/overview`);
+};
 export {
   postCreateNewUser,
   getAllUser,
@@ -119,4 +122,5 @@ export {
   getQuizWithQA,
   postUpsertQA,
   logout,
+  getOverview,
 };

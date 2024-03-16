@@ -8,8 +8,11 @@ import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserPaginate from "./TableUserPaginate";
+import { useTranslation, Trans } from "react-i18next";
 
 const ManageUser = (props) => {
+  const { t } = useTranslation();
+
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [listUsers, setListUsers] = useState([]);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
@@ -59,7 +62,7 @@ const ManageUser = (props) => {
 
   return (
     <div className="manage-user-container">
-      <div className="title">ManageUser</div>
+      <div className="title">{t("manage-u.m")}</div>
       <div className="user-content">
         <div className="btn-add-new">
           <button
@@ -69,7 +72,7 @@ const ManageUser = (props) => {
             }}
           >
             <FcPlus />
-            Add new users
+            {t("manage-u.add")}
           </button>
         </div>
         <div className="table-users-container">
