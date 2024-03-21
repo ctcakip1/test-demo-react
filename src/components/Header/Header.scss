@@ -1,0 +1,15 @@
+.icon-header {
+  font-size: 25px;
+  margin-bottom: 3px;
+  color: #00d4ff;
+  animation: spin 5s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}

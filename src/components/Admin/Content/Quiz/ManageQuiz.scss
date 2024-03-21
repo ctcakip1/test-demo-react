@@ -1,12 +1,15 @@
 .quiz-container {
-  .title {
-    font-size: 24px;
-    font-weight: 600;
-  }
-  legend {
-    font-size: 15px;
-  }
-  .list-detail {
-    padding: 15px;
-  }
+    .title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    legend {
+        font-size: 15px;
+    }
+    .list-detail {
+        padding: 15px;
+    }
+    .assign-quiz-container{
+      padding: 0 20px 0 20px;
+    }
 }

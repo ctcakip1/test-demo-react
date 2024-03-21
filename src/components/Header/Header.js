@@ -9,6 +9,10 @@ import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
 import Language from "./Language";
 import { useTranslation, Trans } from "react-i18next";
+import "./Header.scss";
+import { DiReact } from "react-icons/di";
+import Profile from "./Profile";
+import { useState } from "react";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -20,6 +24,7 @@ const Header = () => {
   const handleSignup = () => {
     navigate("/signup");
   };
+  const [showModalProfile, setShowModelProfile] = useState(false);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const account = useSelector((state) => state.user.account);
   const dispatch = useDispatch();
@@ -34,65 +39,75 @@ const Header = () => {
     }
   };
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        {/* <Navbar.Brand href="">Tuan Anh</Navbar.Brand> */}
-        <NavLink to="/" className="navbar-brand">
-          Tuan anh
-        </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavLink to="/" className="nav-link">
-              {t("header.item1.home")}
-            </NavLink>
-            <NavLink to="/users" className="nav-link">
-              {t("header.item1.users")}
-            </NavLink>
-            <NavLink to="/admins" className="nav-link">
-              {t("header.item1.Admin")}
-            </NavLink>
-          </Nav>
-          <Nav>
-            {isAuthenticated === false ? (
-              <>
-                <button
-                  className="btn-login"
-                  onClick={() => {
-                    handleLogin();
-                  }}
+    <>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          {/* <Navbar.Brand href="">Tuan Anh</Navbar.Brand> */}
+          <NavLink to="/" className="navbar-brand">
+            <DiReact className="icon-header" />
+            Tuan anh
+          </NavLink>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavLink to="/" className="nav-link">
+                {t("header.item1.home")}
+              </NavLink>
+              <NavLink to="/users" className="nav-link">
+                {t("header.item1.users")}
+              </NavLink>
+              <NavLink to="/admins" className="nav-link">
+                {t("header.item1.Admin")}
+              </NavLink>
+            </Nav>
+            <Nav>
+              {isAuthenticated === false ? (
+                <>
+                  <button
+                    className="btn-login"
+                    onClick={() => {
+                      handleLogin();
+                    }}
+                  >
+                    Log in
+                  </button>
+                  <button
+                    className="btn-signup"
+                    onClick={() => {
+                      handleSignup();
+                    }}
+                  >
+                    Sign up
+                  </button>
+                </>
+              ) : (
+                <NavDropdown
+                  title={t("header.item2.title")}
+                  id="basic-nav-dropdown"
                 >
-                  Log in
-                </button>
-                <button
-                  className="btn-signup"
-                  onClick={() => {
-                    handleSignup();
-                  }}
-                >
-                  Sign up
-                </button>
-              </>
-            ) : (
-              <NavDropdown
-                title={t("header.item2.title")}
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item>{t("header.item2.profile")}</NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => {
-                    hanldeLogOut();
-                  }}
-                >
-                  {t("header.item2.logout")}
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
-            <Language />
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      setShowModelProfile(true);
+                    }}
+                  >
+                    {t("header.item2.profile")}
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      hanldeLogOut();
+                    }}
+                  >
+                    {t("header.item2.logout")}
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
+              <Language />
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Profile show={showModalProfile} setShow={setShowModelProfile} />
+    </>
   );
 };
 

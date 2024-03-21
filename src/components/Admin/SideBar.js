@@ -51,13 +51,13 @@ const SideBar = (props) => {
               whiteSpace: "nowrap",
             }}
           >
-            <DiReact size={"3em"} color="00bfff" />
             <span
               className="sidebar-header"
               onClick={() => {
                 navigate("/");
               }}
             >
+              <DiReact size={"3em"} color="00bfff" className="icon-chill"/>
               Tuan anh
             </span>
           </div>
@@ -66,18 +66,18 @@ const SideBar = (props) => {
         <SidebarContent>
           <Menu iconShape="circle">
             <MenuItem icon={<MdDashboard />}>
-            {t("sidebar.d")}
+              {t("sidebar.d")}
               <Link to={"/admins"} />
             </MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu icon={<FaGem />} title={t("sidebar.title")}>
               <MenuItem>
-              {t("sidebar.u")}
-                 <Link to={"/admins/manage-users"} />
+                {t("sidebar.u")}
+                <Link to={"/admins/manage-users"} />
               </MenuItem>
               <MenuItem>
-              {t("sidebar.q")}
+                {t("sidebar.q")}
                 <Link to={"/admins/manage-quizzes"} />
               </MenuItem>
               <MenuItem>
